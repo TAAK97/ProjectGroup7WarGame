@@ -3,6 +3,9 @@ package wargame;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * SYST 17796 Project Base code.
@@ -13,39 +16,36 @@ package wargame;
  *
  * @author dhairyataak
  */
-public abstract class Player {
+public class Player {
 
-    private String name; //the unique name for this player
-
-    /**
-     * A constructor that allows you to set the player's unique ID
-     *
-     * @param name the unique ID to assign to this player.
-     */
+    private String name;
+    private List<Card> hand = new ArrayList<>();
+    // constructor
     public Player(String name) {
         this.name = name;
     }
-
-    /**
-     * @return the player name
-     */
+    // getters and setters
     public String getName() {
         return name;
     }
 
-    /**
-     * Ensure that the playerID is unique
-     *
-     * @param name the player name to set
-     */
-    public void setName(String name) {
-        this.name = name;
+    public List<Card> getHand() {
+        return hand;
     }
-
-    /**
-     * The method to be overridden when you subclass the Player class with your specific type of Player and filled in
-     * with logic to play your game.
-     */
-    public abstract void play();
-
+    // add card to hand
+    public void addCard(Card card) {
+        hand.add(card);
+    }
+    // play card from hand
+    public Card playCard() {
+        if (!hand.isEmpty()) {
+            return hand.remove(0);
+        }
+        return null;
+    }
+    // shuffle cards here also so that we can shuffle our deck from anywhere
+    public void shuffleHand(){
+        Collections.shuffle(getHand(), null);
+    }
+    
 }

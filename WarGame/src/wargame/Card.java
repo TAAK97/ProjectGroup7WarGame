@@ -18,16 +18,36 @@ package wargame;
  *
  * @author dhairyataak
  */
-public abstract class Card {
-    //default modifier for child classes
+public class Card {
+    private String suit;
+    private int rank; // 2-14 where 11-14 represent Jack, Queen, King, Ace
 
-    /**
-     * Students should implement this method for their specific children classes
-     *
-     * @return a String representation of a card. Could be an UNO card, 
-     * a regular playing card etc.
-     */
+    public Card(String suit, int rank) {
+        this.suit = suit;
+        this.rank = rank;
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
     @Override
-    public abstract String toString();
+    public String toString() {
+        return rankToString() + " of " + suit;
+    }
+
+    private String rankToString() {
+        switch (rank) {
+            case 11: return "Jack";
+            case 12: return "Queen";
+            case 13: return "King";
+            case 14: return "Ace";
+            default: return String.valueOf(rank);
+        }
+    }
 
 }

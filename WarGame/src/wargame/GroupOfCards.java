@@ -16,46 +16,36 @@ package wargame;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 
 /**
  *
  * @author dhairyataak
  */
 public class GroupOfCards {
+    private List<Card> cards = new ArrayList<>();
 
-    //The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
-    private int size;//the size of the grouping
-
-    public GroupOfCards(int size) {
-        this.size = size;
+    public GroupOfCards() {
+        initializeDeck();
     }
 
-    /**
-     * A method that will get the group of cards as an ArrayList
-     *
-     * @return the group of cards.
-     */
-    public ArrayList<Card> getCards() {
-        return cards;
+    
+    public void initializeDeck() {
+        String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+        for (String suit : suits) {
+            for (int rank = 2; rank <= 14; rank++) {
+                cards.add(new Card(suit, rank));
+            }
+        }
     }
 
+    // Shuffle the deck
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
-    /**
-     * @return the size of the group of cards
-     */
-    public int getSize() {
-        return size;
+    public List<Card> getCards() {
+        return cards;
     }
-
-    /**
-     * @param size the max size for the group of cards
-     */
-    public void setSize(int size) {
-        this.size = size;
-    }
-
 }//end class
